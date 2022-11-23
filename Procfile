@@ -1,0 +1,1 @@
+web gunicorn youtube_comments.wsgi:application --log-file--
