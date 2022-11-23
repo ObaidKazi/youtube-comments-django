@@ -45,7 +45,13 @@ def index(request):
             # sending response 
             response = HttpResponse(file_data, content_type='application/xlsx')
             response['Content-Disposition'] = 'attachment; filename="comments.xlsx"'
-
+            try:
+                if os.path.exists(file_location):
+                    os.remove(file_location)
+                else:
+                    print("The file does not exist")
+            except:
+                print('not deleted')
         except IOError:
             # handle file not exist case here
             response = HttpResponseNotFound('<h1>File not exist</h1>')
