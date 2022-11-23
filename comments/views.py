@@ -12,8 +12,10 @@ def index(request):
     if request.method=='POST':
         data=request.POST
         url=data.get('url')
-        comments_count=data.get('count',30)
-        sort_by=data.get('sortby',1)
+        comments_count=data.get('count')
+        sort_by=data.get('sortby')
+        comments_count=30 if comments_count=='' else comments_count
+        sort_by=1 if sort_by=='' else sort_by
         comments_count=int(comments_count) if type(comments_count)==str  else comments_count
         sort_by=int(sort_by) if type(sort_by)==str  else sort_by
         if not url:
